@@ -27,8 +27,8 @@ app.get('/ecommerce', (req,res)=> {
 
 
 // * Handling errors
-app.use(errorHandlerMiddleware)
 app.use(notFoundMiddleware)
+app.use(errorHandlerMiddleware)
 
 
 // Start Listening the requst
