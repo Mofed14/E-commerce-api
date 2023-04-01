@@ -2,6 +2,7 @@ const CustomAPIError = require("../errors");
 const User = require("../models/user");
 const { StatusCodes } = require("http-status-codes");
 const { attachCookiesToResponse } = require("../utils");
+
 const register = async (req, res) => {
   const { email, name, password } = req.body;
 
@@ -21,12 +22,43 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  console.log(req.body);
-  res.send("Login API");
+  const { email, password } = req.body;
+
+  // check if email and password exist
+  if ((!email, !password))
+    throw new CustomAPIError.BadRequest("please provide email and password");
+
+  const user = await User.findOne({ email: email });
+
+  //  if no user return 401
+  if (!user) throw new CustomAPIError.Unauthenicated("Invalid Credentials");
+
+  const isMatch = await user.comparePassword(password);
+
+  // if does not match
+  if (isMatch === false)
+    throw new CustomAPIError.Unauthenicated("Invalid Credentials");
+
+  // attach cookie
+  const tokenUser = {
+    userId: user._id,
+    email: user.email,
+    name: user.name,
+  };
+  attachCookiesToResponse(res, tokenUser);
+
+  res.status(StatusCodes.OK).json({
+    user: tokenUser,
+  });
 };
 
 const logout = async (req, res) => {
-  res.send("Logout API");
+  // token cookie equal to any string value Because I will expire it anywhere
+  res.cookie("token", "logout", {
+    httpOnly: true,
+    expires: new Date(Date.now()),
+  });
+  res.status(StatusCodes.OK).json({ msg: "User Logged Out" });
 };
 
 module.exports = {

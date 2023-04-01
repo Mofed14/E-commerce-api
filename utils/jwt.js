@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const { trusted } = require("mongoose");
 
 const createJWT = (payload) => {
   const token = jwt.sign(payload, process.env.JWT_SECRET, {
@@ -22,7 +21,7 @@ const attachCookiesToResponse = (res, user) => {
     httpOnly: true,
     expires: new Date(Date.now() + oneDay),
     secure: process.env.NODE_ENV === "production",
-    signed: trusted,
+    signed: true,
   });
 };
 
