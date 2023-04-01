@@ -9,4 +9,7 @@
 7- hasing password using bcryptjs
 9- authorization using jsonwebtoken
 10- login, register, and logout
-11- using cookies to sorte data
+11- using cookies to sorte data and authentication
+12- getAllUsers, getSingleUser, showCurrentUser, updateUser, updateUserPassword
+13- authorize permissions
+14- If the user does not authenticated (email or password don't exist the getusers or getsingleuser etc if the authenticated is good but is not admin the user does not authorized)

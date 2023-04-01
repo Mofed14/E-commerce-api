@@ -15,6 +15,7 @@ const register = async (req, res) => {
     userId: user._id,
     email: user.email,
     name: user.name,
+    role: user.role,
   });
   res.status(201).json({
     user,
@@ -44,6 +45,7 @@ const login = async (req, res) => {
     userId: user._id,
     email: user.email,
     name: user.name,
+    role: user.role,
   };
   attachCookiesToResponse(res, tokenUser);
 
