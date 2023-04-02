@@ -44,7 +44,7 @@ app.get("/api/v1", (req, res) => {
 
 // 2- then Express tries to hit all the routes. and if it doesn't find the root,
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/users", userRouter);
+app.use("/api/v1/users/", userRouter);
 
 // * Handling errors
 // 3-  you automatically end up over here. That's very important. That's the 404.

@@ -15,9 +15,10 @@ const {
 router
   .route("/")
   .get(authenticateUser, authorizePermissions("admin", "owner"), getAllUsers);
+router.route("/showMe").get(authenticateUser, showCurrentUser);
 router.route("/:id").get(authenticateUser, getSingleUser);
-router.route("/showeMe").get(showCurrentUser);
+
 router.route("/updateUser").put(updateUser);
-router.route("/updateUserPassword").put(updateUserPassword);
+router.route("/updateUserPassword").put(authenticateUser, updateUserPassword);
 
 module.exports = router;
