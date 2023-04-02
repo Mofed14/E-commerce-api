@@ -13,3 +13,6 @@
 12- getAllUsers, getSingleUser, showCurrentUser, updateUser, updateUserPassword
 13- authorize permissions
 14- If the user does not authenticated (email or password don't exist the getusers or getsingleuser etc if the authenticated is good but is not admin the user does not authorized)
+15- Api for products with authorization and authentication
+16- (createProduct, getAllProducts, getSingleProduct, updateProduct, deleteProduct, uploadImage)
+17- mockaroo to create a fake data
