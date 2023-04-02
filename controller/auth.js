@@ -1,7 +1,7 @@
 const CustomAPIError = require("../errors");
 const User = require("../models/user");
 const { StatusCodes } = require("http-status-codes");
-const { attachCookiesToResponse } = require("../utils");
+const { attachCookiesToResponse, createTokenUser } = require("../utils");
 
 const register = async (req, res) => {
   const { email, name, password } = req.body;
@@ -11,13 +11,9 @@ const register = async (req, res) => {
 
   const user = await User.create(req.body);
 
-  attachCookiesToResponse(res, {
-    userId: user._id,
-    email: user.email,
-    name: user.name,
-    role: user.role,
-  });
-  res.status(201).json({
+  const tokenUser = createTokenUser(user);
+  attachCookiesToResponse(res, tokenUser);
+  res.status(StatusCodes.CREATED).json({
     user,
   });
 };
@@ -41,12 +37,7 @@ const login = async (req, res) => {
     throw new CustomAPIError.Unauthenicated("Invalid Credentials");
 
   // attach cookie
-  const tokenUser = {
-    userId: user._id,
-    email: user.email,
-    name: user.name,
-    role: user.role,
-  };
+  const tokenUser = createTokenUser(user);
   attachCookiesToResponse(res, tokenUser);
 
   res.status(StatusCodes.OK).json({

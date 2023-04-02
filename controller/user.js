@@ -1,6 +1,11 @@
 const User = require("../models/user");
 const { StatusCodes } = require("http-status-codes");
 const CustomAPIError = require("../errors");
+const {
+  createTokenUser,
+  attachCookiesToResponse,
+  checkPersmissions,
+} = require("../utils");
 
 const getAllUsers = async (req, res) => {
   let users = await User.find({ role: "user" }).select("-password");
@@ -13,6 +18,7 @@ const getSingleUser = async (req, res) => {
   const { id } = req.params;
   const user = await User.findOne({ _id: id }).select("-password");
   if (!user) throw new CustomAPIError.NotFound("No user with this id");
+  checkPersmissions(req.user.payload, user._id);
   res.status(StatusCodes.OK).json({
     user,
   });
@@ -23,7 +29,18 @@ const showCurrentUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-  res.send("Update user");
+  const { name, email } = req.body;
+  if (!name || !email)
+    throw new CustomAPIError.BadRequest("Please provide email and name");
+  const user = await User.findOne({ _id: req.user.payload.userId });
+
+  user.email = email;
+  user.name = name;
+  await user.save();
+
+  const tokenUser = createTokenUser(user);
+  attachCookiesToResponse(res, tokenUser);
+  res.status(StatusCodes.OK).json({ user: tokenUser });
 };
 
 const updateUserPassword = async (req, res) => {
