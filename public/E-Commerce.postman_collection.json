@@ -1,0 +1,712 @@
+{
+	"info": {
+		"_postman_id": "38607b5c-a4ad-4fe0-8768-e2d442769cfc",
+		"name": "E-Commerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15270312"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"mofed2@gmail.com\",\r\n    \"password\": \"mofed1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://e-commerce-app-mo9m.onrender.com/api/v1/auth/login",
+							"protocol": "https",
+							"host": [
+								"e-commerce-app-mo9m",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"mofed\",\r\n    \"email\":\"mofed2@gmail.com\",\r\n    \"password\": \"mofed1234\",\r\n    \"role\":\"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://e-commerce-app-mo9m.onrender.com/api/v1/auth/register",
+							"protocol": "https",
+							"host": [
+								"e-commerce-app-mo9m",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://e-commerce-app-mo9m.onrender.com/api/v1/auth/logout",
+							"protocol": "https",
+							"host": [
+								"e-commerce-app-mo9m",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://e-commerce-app-mo9m.onrender.com/api/v1/users/",
+							"protocol": "https",
+							"host": [
+								"e-commerce-app-mo9m",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								""
+							]
+						},
+						"description": "StartFragment\n\nMust be the role is \"admin\" to can use these endpoints\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "get single user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://e-commerce-app-mo9m.onrender.com/api/v1/users/6428e78d1186d8ccb6bf7a02",
+							"protocol": "https",
+							"host": [
+								"e-commerce-app-mo9m",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"6428e78d1186d8ccb6bf7a02"
+							]
+						},
+						"description": "StartFragment\n\nMust be the role is \"admin\" to can use these endpoints\n\n  \n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Password",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newPassword\": \"mofed123\",\r\n    \"oldPasswprd\": \"1234w3434\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://e-commerce-app-mo9m.onrender.com/api/v1/users/updateUserPassword",
+							"protocol": "https",
+							"host": [
+								"e-commerce-app-mo9m",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"updateUserPassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "showMe",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://e-commerce-app-mo9m.onrender.com/api/v1/users/showMe",
+							"protocol": "https",
+							"host": [
+								"e-commerce-app-mo9m",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"showMe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"newMofed\",\r\n    \"email\":\"newmofed@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://e-commerce-app-mo9m.onrender.om/api/v1/users/updateUser",
+							"protocol": "https",
+							"host": [
+								"e-commerce-app-mo9m",
+								"onrender",
+								"om"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"updateUser"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "You don't have to put anything in the headers because everything is taken from the cookies"
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "get All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://e-commerce-app-mo9m.onrender.com/api/v1/products",
+							"protocol": "https",
+							"host": [
+								"e-commerce-app-mo9m",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://e-commerce-app-mo9m.onrender.com/api/v1/products/642b7c564bd9d2590ac6e84d",
+							"protocol": "https",
+							"host": [
+								"e-commerce-app-mo9m",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"642b7c564bd9d2590ac6e84d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"name\": \"albany sectional\",\r\n    \"price\": 109999,\r\n    \"image\": \"https://dl.airtable.com/.attachmentThumbnails/0be1af59cf889899b5c9abb1e4db38a4/d631ac52\",\r\n    \"colors\": [\"#000\", \"#ffb900\"],\r\n    \"company\": \"liddy\",\r\n    \"description\": \"Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge\",\r\n    \"category\": \"kitchen\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://e-commerce-app-mo9m.onrender.com/api/v1/products/6429e05df481923acabc8686",
+							"protocol": "https",
+							"host": [
+								"e-commerce-app-mo9m",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"6429e05df481923acabc8686"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"product 1\",\r\n    \"price\": 25999,\r\n    \"colors\": [\"#ff0000\", \"#00ff00\", \"#0000ff\"],\r\n    \"company\": \"marcos\",\r\n    \"description\": \"Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge\",\r\n    \"category\": \"office\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://e-commerce-app-mo9m.onrender.com/api/v1/products",
+							"protocol": "https",
+							"host": [
+								"e-commerce-app-mo9m",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://e-commerce-app-mo9m.onrender.com/api/v1/products/642d62e25c68f1cd5a0eb0d2",
+							"protocol": "https",
+							"host": [
+								"e-commerce-app-mo9m",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"642d62e25c68f1cd5a0eb0d2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Image",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/mofed/OneDrive/Pictures/mean-stack.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://e-commerce-app-mo9m.onrender.com/api/v1/products/uploadImage",
+							"protocol": "https",
+							"host": [
+								"e-commerce-app-mo9m",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"uploadImage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Product Reviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://e-commerce-app-mo9m.onrender.com/api/v1/products/642ab8b644ff7e37c1384920/reviews",
+							"protocol": "https",
+							"host": [
+								"e-commerce-app-mo9m",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"642ab8b644ff7e37c1384920",
+								"reviews"
+							]
+						},
+						"description": "get all reviews for specific product using : productId"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reviews",
+			"item": [
+				{
+					"name": "get all reviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://e-commerce-app-mo9m.onrender.com/api/v1/reviews",
+							"protocol": "https",
+							"host": [
+								"e-commerce-app-mo9m",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Review",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://e-commerce-app-mo9m.onrender.com/api/v1/reviews/642b78384bd9d2590ac6e83d",
+							"protocol": "https",
+							"host": [
+								"e-commerce-app-mo9m",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reviews",
+								"642b78384bd9d2590ac6e83d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Review",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"rating\": 5, \r\n    \"title\": \"Hello\",\r\n    \"comment\": \"very good pro\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://e-commerce-app-mo9m.onrender.com/api/v1/reviews/642f47839e846b6670653c25",
+							"protocol": "https",
+							"host": [
+								"e-commerce-app-mo9m",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reviews",
+								"642f47839e846b6670653c25"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Review",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://e-commerce-app-mo9m.onrender.com/api/v1/reviews/642f57ffeceb921de9ceb3c3",
+							"protocol": "https",
+							"host": [
+								"e-commerce-app-mo9m",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reviews",
+								"642f57ffeceb921de9ceb3c3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create review",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rating\": 2,\r\n    \"product\": \"642f47689e846b6670653c20\",\r\n    \"title\": \"product\",\r\n    \"comment\": \"good product\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://e-commerce-app-mo9m.onrender.com/api/v1/reviews",
+							"protocol": "https",
+							"host": [
+								"e-commerce-app-mo9m",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Get All Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://e-commerce-app-mo9m.onrender.com/api/v1/orders",
+							"protocol": "https",
+							"host": [
+								"e-commerce-app-mo9m",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"orders"
+							]
+						},
+						"description": "just admin can access"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://e-commerce-app-mo9m.onrender.com/api/v1/642f8eac8a5563193fe4fbb2",
+							"protocol": "https",
+							"host": [
+								"e-commerce-app-mo9m",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"642f8eac8a5563193fe4fbb2"
+							]
+						},
+						"description": "any user can access his single order"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Orders",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"paymentIntentId\": \"mmsdlksjd\"    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://e-commerce-app-mo9m.onrender.com/api/v1/orders/642f8eac8a5563193fe4fbb2",
+							"protocol": "https",
+							"host": [
+								"e-commerce-app-mo9m",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"642f8eac8a5563193fe4fbb2"
+							]
+						},
+						"description": "any user can update his order"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Oder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"tax\": 399,\r\n    \"shippingFee\": 499,\r\n    \"items\": [\r\n      {\r\n        \"name\": \"accent chair\",\r\n        \"price\": 2599,\r\n        \"image\": \"https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160\",\r\n        \"amount\": 34,\r\n        \"product\": \"642f47689e846b6670653c20\"\r\n      }\r\n    ]\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://e-commerce-app-mo9m.onrender.com/api/v1/orders",
+							"protocol": "https",
+							"host": [
+								"e-commerce-app-mo9m",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"orders"
+							]
+						},
+						"description": "any user can create his order"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current User Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://e-commerce-app-mo9m.onrender.com/api/v1/orders/showAllMyOrders",
+							"protocol": "https",
+							"host": [
+								"e-commerce-app-mo9m",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"showAllMyOrders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
