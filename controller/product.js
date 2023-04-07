@@ -10,12 +10,12 @@ const createProduct = async (req, res) => {
 
 const getAllProducts = async (req, res) => {
   const products = await Product.find({});
-  res.status(StatusCodes.OK).json({ products });
+  res.status(StatusCodes.OK).json({ products, count: products.length });
 };
 
 const getSingleProduct = async (req, res) => {
   const { id } = req.params;
-  const product = await Product.findById(id);
+  const product = await Product.findById(id).populate("reviews");
   if (!product) {
     throw new CustomAPIError.BadRequest(`No products with this id ${id}`);
   }
@@ -40,16 +40,21 @@ const updateProduct = async (req, res) => {
 
 const deleteProduct = async (req, res) => {
   const { id } = req.params;
-  const product = await Product.findOneAndDelete(id, { new: true });
+
+  const product = await Product.findOne({ _id: id });
   if (!product) {
     throw new CustomAPIError.BadRequest(`No products with this id ${id}`);
   }
+
+  await product.remove();
   res.status(StatusCodes.OK).json({
     msg: "Success! Product Deleted.",
   });
 };
 
 const uploadImage = async (req, res) => {
+  const { name } = req.files.image;
+  console.log(name);
   res.send("upload image");
 };
 

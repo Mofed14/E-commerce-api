@@ -55,12 +55,29 @@ const ProductSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    numberOfReviews: {
+      type: Number,
+      default: 0,
+    },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
   },
-  { timestamps: true }
+  { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
+
+ProductSchema.virtual("reviews", {
+  ref: "Review",
+  localField: "_id",
+  foreignField: "product",
+  justOne: false,
+});
+
+//  we remove the product. Right before we do that, we go to reviews and
+// we're delete all the reviews that are associated with this particular product.
+ProductSchema.pre("remove", async function () {
+  await this.model("Review").deleteMany({ product: this._id });
+});
 
 module.exports = mongoose.model("Product", ProductSchema);

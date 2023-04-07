@@ -9,6 +9,7 @@ const app = express();
 // rest of packages
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
+const fileUpload = require("express-fileupload");
 
 // * DB
 const connectDB = require("./db/connect");
@@ -20,15 +21,21 @@ const port = process.env.PORT || 5000;
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 const productRouter = require("./routes/product");
+const reviewRouter = require("./routes/review");
+const orderRouter = require("./routes/order");
 
 // * Middlewares
 const notFoundMiddleware = require("./middleware/notfound");
 const errorHandlerMiddleware = require("./middleware/error-handler");
+const { authenticateUser } = require("./middleware/authentication");
 
 // 1- So first we run through all the Middlewares, which in this case,
 app.use(morgan("tiny"));
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
+app.use(fileUpload({}));
+
+app.use(express.static("./public"));
 
 app.get("/", (req, res) => {
   // console.log(req.cookies);
@@ -47,6 +54,8 @@ app.get("/api/v1", (req, res) => {
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users/", userRouter);
 app.use("/api/v1/products", productRouter);
+app.use("/api/v1/reviews", authenticateUser, reviewRouter);
+app.use("/api/v1/orders", authenticateUser, orderRouter);
 
 // * Handling errors
 // 3-  you automatically end up over here. That's very important. That's the 404.

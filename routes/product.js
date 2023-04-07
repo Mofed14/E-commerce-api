@@ -7,11 +7,13 @@ const {
   updateProduct,
   deleteProduct,
   uploadImage,
+  clearAllReviews,
 } = require("../controller/product");
 const {
   authenticateUser,
   authorizePermissions,
 } = require("../middleware/authentication");
+const { getSingleProductReviews } = require("../controller/review");
 
 router
   .route("/")
@@ -25,4 +27,6 @@ router
 router
   .route("/uploadImage")
   .post(authenticateUser, authorizePermissions("admin"), uploadImage);
+
+router.route("/:id/reviews").get(authenticateUser, getSingleProductReviews);
 module.exports = router;
