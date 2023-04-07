@@ -43,13 +43,13 @@ cloudinary.config({
 });
 
 // 1- So first we run through all the Middlewares, which in this case,
-// app.set("trust proxy", 1);
-// app.use(
-//   rateLimiter({
-//     windowMs: 15 * 60 * 1000,
-//     max: 600000000,
-//   })
-// );
+app.set("trust proxy", 1);
+app.use(
+  rateLimiter({
+    windowMs: 15 * 60 * 1000,
+    max: 600000000,
+  })
+);
 app.use(helmet());
 app.use(cors());
 app.use(xss());
