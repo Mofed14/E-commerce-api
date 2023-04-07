@@ -16,3 +16,10 @@
 15- CRUD products with authorization and authentication
 16- mockaroo to create a fake data
 17- CRUD review
+18- some secuirty packages:
+
+- [] express-rate-limiter: in order to limit requests made from each IP address.
+- [] helmet : secure your Express apps by setting various HTTP headers.
+- [] xss-clean : to sanitize user input.
+- [] express-mongo-sanitize: to protect against MongoDB injection
+- [] cors (cookies!!!!): to allow access from different domain

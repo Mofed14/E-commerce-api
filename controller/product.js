@@ -1,6 +1,9 @@
 const Product = require("../models/product");
 const { StatusCodes } = require("http-status-codes");
 const CustomAPIError = require("../errors");
+const path = require("path");
+const cloudinary = require("cloudinary").v2;
+const fs = require("fs");
 
 const createProduct = async (req, res) => {
   req.body.user = req.user.payload.userId;
@@ -53,9 +56,20 @@ const deleteProduct = async (req, res) => {
 };
 
 const uploadImage = async (req, res) => {
-  const { name } = req.files.image;
-  console.log(name);
-  res.send("upload image");
+  const result = await cloudinary.uploader.upload(
+    req.files.image.tempFilePath,
+    {
+      use_filename: true,
+      folder: "ecommerce",
+    }
+  );
+  // after the image uploaded on cloudinary delete it from temp folder
+  fs.unlinkSync(req.files.image.tempFilePath);
+  res.status(StatusCodes.OK).json({
+    image: {
+      src: result.secure_url,
+    },
+  });
 };
 
 module.exports = {

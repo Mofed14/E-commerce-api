@@ -10,6 +10,12 @@ const app = express();
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const fileUpload = require("express-fileupload");
+const cloudinary = require("cloudinary").v2;
+const rateLimiter = require("express-rate-limit");
+const helmet = require("helmet");
+const xss = require("xss-clean");
+const cors = require("cors");
+const mongoSanitize = require("express-mongo-sanitize");
 
 // * DB
 const connectDB = require("./db/connect");
@@ -29,13 +35,31 @@ const notFoundMiddleware = require("./middleware/notfound");
 const errorHandlerMiddleware = require("./middleware/error-handler");
 const { authenticateUser } = require("./middleware/authentication");
 
+//configuaration
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
+});
+
 // 1- So first we run through all the Middlewares, which in this case,
+// app.set("trust proxy", 1);
+// app.use(
+//   rateLimiter({
+//     windowMs: 15 * 60 * 1000,
+//     max: 600000000,
+//   })
+// );
+app.use(helmet());
+app.use(cors());
+app.use(xss());
+app.use(mongoSanitize());
 app.use(morgan("tiny"));
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
-app.use(fileUpload({}));
 
 app.use(express.static("./public"));
+app.use(fileUpload({ useTempFiles: true }));
 
 app.get("/", (req, res) => {
   // console.log(req.cookies);
